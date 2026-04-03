@@ -1,0 +1,369 @@
+@import "tailwindcss";
+
+/* Minecraft-Inspired Gamification Theme */
+
+:root {
+  /* Minecraft Color Palette */
+  --minecraft-dark: #1a1a2e;
+  --minecraft-darker: #0f0f1e;
+  --minecraft-accent-yellow: #ffeb3b;
+  --minecraft-accent-green: #4caf50;
+  --minecraft-accent-orange: #ff9800;
+  --minecraft-accent-red: #f44336;
+  --minecraft-accent-blue: #2196f3;
+  --minecraft-text-light: #ffffff;
+  --minecraft-text-dark: #1a1a2e;
+  --minecraft-gold: #ffd700;
+  --minecraft-emerald: #50c878;
+  
+  /* Tailwind Overrides */
+  --primary: #2196f3;
+  --primary-foreground: #ffffff;
+  --secondary: #ffeb3b;
+  --secondary-foreground: #1a1a2e;
+  --accent: #4caf50;
+  --accent-foreground: #ffffff;
+  --background: #0f0f1e;
+  --foreground: #ffffff;
+  --card: #1a1a2e;
+  --card-foreground: #ffffff;
+  --border: #2a2a3e;
+  --input: #2a2a3e;
+  --radius: 0.25rem;
+}
+
+/* Pixel Art Font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Pixel Art Buttons */
+button, [role="button"] {
+  cursor: pointer;
+  position: relative;
+  border: 2px solid var(--minecraft-accent-yellow);
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #808080;
+  border-color: #606060;
+}
+
+/* Minecraft-Style Cards */
+.minecraft-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2a2a3e 100%);
+  border: 3px solid var(--minecraft-accent-yellow);
+  box-shadow: 
+    0 4px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.minecraft-card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, rgba(255, 235, 59, 0.3) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Minecraft-Style Inputs */
+input, textarea, select {
+  background-color: var(--input);
+  color: var(--foreground);
+  border: 2px solid var(--border);
+  padding: 0.75rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* XP Progress Bar */
+.xp-progress {
+  background: linear-gradient(90deg, #1a1a2e 0%, #2a2a3e 100%);
+  border: 2px solid var(--minecraft-accent-yellow);
+  height: 24px;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.xp-progress-fill {
+  background: linear-gradient(90deg, #4caf50 0%, #45a049 100%);
+  height: 100%;
+  transition: width 0.3s ease;
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.xp-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Level Badge */
+.level-badge {
+  background: linear-gradient(135deg, var(--minecraft-accent-yellow) 0%, #ffb300 100%);
+  color: var(--minecraft-text-dark);
+  border: 2px solid #ff9800;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.level-badge::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--minecraft-accent-yellow);
+  opacity: 0.3;
+}
+
+/* Coins Display */
+.coins-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--minecraft-accent-yellow);
+  border-radius: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+.coins-icon {
+  font-size: 1.5rem;
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Island Status Indicators */
+.island-active {
+  border-color: var(--minecraft-accent-green);
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
+}
+
+.island-completed {
+  border-color: var(--minecraft-accent-yellow);
+  opacity: 0.8;
+}
+
+.island-locked {
+  border-color: #808080;
+  opacity: 0.6;
+  filter: grayscale(50%);
+}
+
+/* Lesson Item */
+.lesson-item {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2a2a3e 100%);
+  border-left: 4px solid var(--minecraft-accent-green);
+  padding: 1rem;
+  margin: 0.5rem 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.lesson-item:hover {
+  transform: translateX(4px);
+  border-left-color: var(--minecraft-accent-yellow);
+  background: linear-gradient(135deg, #2a2a3e 0%, #3a3a4e 100%);
+}
+
+.lesson-item.completed {
+  border-left-color: var(--minecraft-accent-green);
+  opacity: 0.7;
+}
+
+.lesson-item.locked {
+  border-left-color: #808080;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* XP Badge */
+.xp-badge {
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0;
+  font-weight: bold;
+  font-size: 0.875rem;
+  border: 1px solid var(--minecraft-accent-yellow);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
+  display: inline-block;
+}
+
+/* Achievement Badge */
+.achievement-badge {
+  background: linear-gradient(135deg, var(--minecraft-accent-yellow) 0%, #ffb300 100%);
+  color: var(--minecraft-text-dark);
+  padding: 0.5rem 1rem;
+  border-radius: 0;
+  font-weight: bold;
+  border: 2px solid #ff9800;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  margin: 0.5rem;
+  position: relative;
+}
+
+.achievement-badge::before {
+  content: '⭐';
+  margin-right: 0.5rem;
+}
+
+/* Animations */
+@keyframes pixelPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+}
+
+.pulse-animation {
+  animation: pixelPulse 0.5s ease-in-out;
+}
+
+.glow-animation {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Minecraft Grid Background */
+.minecraft-bg {
+  background-image: 
+    linear-gradient(0deg, transparent 24%, rgba(255, 235, 59, 0.05) 25%, rgba(255, 235, 59, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 235, 59, 0.05) 75%, rgba(255, 235, 59, 0.05) 76%, transparent 77%, transparent),
+    linear-gradient(90deg, transparent 24%, rgba(255, 235, 59, 0.05) 25%, rgba(255, 235, 59, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 235, 59, 0.05) 75%, rgba(255, 235, 59, 0.05) 76%, transparent 77%, transparent);
+  background-size: 50px 50px;
+  background-color: var(--minecraft-darker);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .level-badge {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+
+  .coins-display {
+    font-size: 1rem;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--minecraft-darker);
+  border: 1px solid var(--minecraft-accent-yellow);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--minecraft-accent-green) 0%, #45a049 100%);
+  border: 1px solid var(--minecraft-accent-yellow);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #45a049 0%, #3d8b40 100%);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1280px;
+  }
+}
